@@ -1,6 +1,6 @@
 package util;
 
-import entities.Producto;
+import entities.ProductoCliente;
 
 import java.text.Normalizer;
 import java.util.ArrayList;
@@ -13,18 +13,18 @@ import java.util.stream.Collectors;
 public abstract class ConvertidorUtil<Entidad> {
 
     /**
-     * Toma un conjunto de Producto Especifico y lo convierte a conjunto de Producto
+     * Toma un conjunto de ProductoCliente Especifico y lo convierte a conjunto de ProductoCliente
      * @param productos
      * @return
      */
-    public List<Producto> arregloToProducto(List<Entidad> productos){
+    public List<ProductoCliente> arregloToProducto(List<Entidad> productos){
         int numeroDeHilos = 4;
         int cantidadDeProductosEntidad = productos.size();
         int intervalo = cantidadDeProductosEntidad / numeroDeHilos;
         ExecutorService hilos = Executors.newFixedThreadPool(numeroDeHilos);
 
         List<List<Entidad>> listaDivididaEnPartas = new ArrayList<>();
-        List<Future<List<Producto>>> futureList = new ArrayList<>();
+        List<Future<List<ProductoCliente>>> futureList = new ArrayList<>();
 
         for (int i = 0; i < numeroDeHilos; i++) {
             int indiceInicial = i * intervalo;
@@ -33,9 +33,9 @@ public abstract class ConvertidorUtil<Entidad> {
         };
         for (List<Entidad> lista : listaDivididaEnPartas){
             futureList.add(
-                    hilos.submit(new Callable<List<Producto>>() {
+                    hilos.submit(new Callable<List<ProductoCliente>>() {
                         @Override
-                        public List<Producto> call() throws Exception {
+                        public List<ProductoCliente> call() throws Exception {
                             return lista.stream()
                                     .map(productoEntidad -> convertirProductoyDevolverlo(productoEntidad))
                                     .flatMap(Collection::stream)
@@ -69,7 +69,7 @@ public abstract class ConvertidorUtil<Entidad> {
      * @param productoSinConvertir
      * @return puede que sea uno solo o sean un conjunto, depende de la Entidad Especifica
      */
-    public abstract List<Producto> convertirProductoyDevolverlo(Entidad productoSinConvertir);
+    public abstract List<ProductoCliente> convertirProductoyDevolverlo(Entidad productoSinConvertir);
 
 
     /**

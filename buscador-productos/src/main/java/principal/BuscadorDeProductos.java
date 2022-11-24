@@ -9,7 +9,6 @@ import util.ConvertidorUtil;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import java.time.LocalDate;
 import java.util.List;
 
 /**
