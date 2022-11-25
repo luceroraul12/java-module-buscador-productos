@@ -1,7 +1,5 @@
 package entities;
 
-import constants.Distribuidora;
-import lombok.Builder;
 import lombok.Getter;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -11,10 +9,4 @@ import org.springframework.web.multipart.MultipartFile;
 @Getter
 public class PeticionExcel extends Peticion {
     private MultipartFile[] excels;
-
-    @Builder
-    public PeticionExcel(Distribuidora distribuidora, MultipartFile[] excels) {
-        super(distribuidora);
-        this.excels = excels;
-    }
 }

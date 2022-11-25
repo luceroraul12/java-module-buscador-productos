@@ -4,6 +4,8 @@ import constants.TipoDistribuidora;
 import entities.PeticionWebScrapping;
 import entities.ProductoEspecifico;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -22,7 +24,8 @@ import java.util.stream.Collectors;
  * En caso de que alguna pagina no carge el template desde el programa pero si en el navegador, se debera utilizar un WebDriver que simule el uso del navegador.
  * @param <Entidad>
  */
-@Data
+@Getter
+@Setter
 public abstract class BuscadorDeProductosWebScrapping<Entidad extends ProductoEspecifico> extends BuscadorDeProductos<Entidad, PeticionWebScrapping> {
 
     /**
@@ -48,7 +51,7 @@ public abstract class BuscadorDeProductosWebScrapping<Entidad extends ProductoEs
 
 
     @Override
-    public List<Entidad> adquirirProductosEntidad(PeticionWebScrapping peticionWebScrapping) {
+    public List<Entidad>  adquirirProductosEntidad() {
         List<Entidad> productostotales = new ArrayList<>();
         try {
             productostotales = generarDocumentos()
@@ -70,7 +73,7 @@ public abstract class BuscadorDeProductosWebScrapping<Entidad extends ProductoEs
      * @throws IOException
      * @see BuscadorDeProductosWebScrapping#generarNuevaURL(int)
      */
-    protected List<Document> generarDocumentos() throws IOException {
+    public List<Document> generarDocumentos() throws IOException {
         List<Document> documentos = new ArrayList<>();
         if (esBuscadorConPaginador){
             int contador = 1;

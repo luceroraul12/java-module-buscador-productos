@@ -1,7 +1,6 @@
 package entities;
 
 
-import constants.Distribuidora;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,5 +13,4 @@ import lombok.Setter;
 @Getter
 @Setter
 public abstract class ProductoEspecifico {
-    private Distribuidora distribuidora;
 }

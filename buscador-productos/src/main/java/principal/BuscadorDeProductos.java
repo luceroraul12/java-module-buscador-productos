@@ -1,6 +1,5 @@
 package principal;
 
-import constants.Distribuidora;
 import constants.TipoDistribuidora;
 import entities.ProductoEspecifico;
 import lombok.Data;
@@ -20,12 +19,6 @@ import java.util.List;
 @Data
 public abstract class BuscadorDeProductos<Entidad extends ProductoEspecifico, Auxiliar>
 {
-
-    /**
-     * Es la enumeracion que identifica a cada implementacion de este servicio.
-     * Toda implementacion utilizada debe tenerlo seteado.
-     */
-    private Distribuidora distribuidora;
     /**
      * Es la enumeracion que identifica el tipo de busqueda.
      * Toda implementacion utilizada debe tenerlo seteado.
@@ -67,10 +60,9 @@ public abstract class BuscadorDeProductos<Entidad extends ProductoEspecifico, Au
     /**
      * Metodo a implementar por cada clase de tipo de busqueda.
      * Este metodo permite unicamente la adquisicion de productos de cierta entidad y solo eso.
-     * @param elementoAuxiliar
      * @return lista de productos
      */
-    protected abstract List<Entidad> adquirirProductosEntidad(Auxiliar elementoAuxiliar);;
+    protected abstract List<Entidad> adquirirProductosEntidad();
 
 
 
