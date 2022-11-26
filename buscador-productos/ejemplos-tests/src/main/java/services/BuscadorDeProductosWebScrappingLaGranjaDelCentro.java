@@ -46,7 +46,7 @@ public class BuscadorDeProductosWebScrappingLaGranjaDelCentro extends BuscadorDe
     }
 
     @Override
-    protected Elements filtrarElementos(Document documento) {
+    protected Elements filtrarHTMLHastaDivProductos(Document documento) {
         return documento
                 .select("div.box-content-1");
     }

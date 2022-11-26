@@ -3,7 +3,6 @@ package principal;
 import constants.TipoDistribuidora;
 import entities.PeticionWebScrapping;
 import entities.ProductoEspecifico;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.jsoup.Jsoup;
@@ -148,11 +147,11 @@ public abstract class BuscadorDeProductosWebScrapping<Entidad extends ProductoEs
      * @return listado de productos especificos.
      */
     private List<Entidad> obtenerProductosPorDocument(Document documento){
-        List<Entidad> productosPorDocumento = obtenerTodosLosProductosDeLaPagina(filtrarElementos(documento));
+        List<Entidad> productosPorDocumento = obtenerProductosaPartirDeUnicoElemento(filtrarHTMLHastaDivProductos(documento));
         return productosPorDocumento;
     }
 
-    private List<Entidad> obtenerTodosLosProductosDeLaPagina(Elements elements){
+    private List<Entidad> obtenerProductosaPartirDeUnicoElemento(Elements elements){
         return elements
                 .stream()
                 .map(this::obtenerProductosAPartirDeElements)
@@ -171,7 +170,7 @@ public abstract class BuscadorDeProductosWebScrapping<Entidad extends ProductoEs
      * @param documento documento que contiene elementos
      * @return elementos filtrados
      */
-    protected abstract Elements filtrarElementos(Document documento);
+    protected abstract Elements filtrarHTMLHastaDivProductos(Document documento);
 
     @Override
     protected void initTipoBusqueda() {
